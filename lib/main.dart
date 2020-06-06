@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart' as Constants;
 import 'story/story_headline.dart';
@@ -109,12 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: GoogleFonts.grandHotel(
                       color: Constants.COLOR_FONT, fontSize: 30)),
               leading: IconButton(
-                  onPressed: () => {},
+                  onPressed: () {},
                   icon: Icon(Icons.photo_camera, color: Constants.COLOR_FONT)),
               actions: [
                 IconButton(
-                    onPressed: () => {},
-                    icon: Icon(Icons.chat, color: Constants.COLOR_FONT)),
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.inbox,
+                        color: Constants.COLOR_FONT)),
               ],
               backgroundColor: Constants.COLOR_BACKGROUND,
             ),

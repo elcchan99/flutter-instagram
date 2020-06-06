@@ -57,9 +57,30 @@ class NewsFeed extends StatelessWidget {
         // button bar
         Container(
             child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Expanded(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              IconButton(
+                icon: FaIcon(FontAwesomeIcons.heart),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: FaIcon(
+                  FontAwesomeIcons.comment,
+                ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: FaIcon(
+                  FontAwesomeIcons.inbox,
+                ),
+                onPressed: () {},
+              )
+            ])),
             IconButton(
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: FaIcon(FontAwesomeIcons.bookmark),
               onPressed: () {},
             )
           ],
