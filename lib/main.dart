@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart' as Constants;
 import 'story/story_headline.dart';
 import 'story/story_model.dart';
+import 'news_feed/news_feed.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,62 +46,50 @@ class _MyHomePageState extends State<MyHomePage> {
   final stories = [
     StoryModel(
         name: "ann",
-        color: Colors.red,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1454927900/294/feels.png"),
     StoryModel(
         name: "benny",
-        color: Colors.blue,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463602125/429/troll.png"),
     StoryModel(
         name: "hey",
-        color: Colors.green,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1590157341/9206/badpokerface.png"),
     StoryModel(
         name: "roy",
-        color: Colors.yellow,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1490810099/1966/areyoukiddingme.png"),
     StoryModel(
         name: "kay",
-        color: Colors.black,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "wynne",
-        color: Colors.pink,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "louis",
-        color: Colors.purple,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "nanny",
-        color: Colors.cyan,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "karle",
-        color: Colors.teal,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "puddle",
-        color: Colors.deepOrange,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "yanny",
-        color: Colors.orange,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
     StoryModel(
         name: "candy",
-        color: Colors.grey,
         avator:
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
   ];
@@ -137,7 +126,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 thickness: 1,
               ),
               Expanded(
-                child: Container(color: Colors.blueGrey),
+                child: Container(
+                    child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (content, index) => NewsFeed())),
               )
             ])));
   }
