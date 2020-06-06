@@ -61,55 +61,6 @@ class StoryHeadlineState extends State<StoryHeadline> {
               indent: padding,
             );
           },
-        )
-        // ListView.separated(
-        //   shrinkWrap: true,
-        //   padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: padding),
-        //   itemCount: widget.stories.length,
-        //   scrollDirection: Axis.horizontal,
-        //   itemBuilder: (context, index) {
-        //     return Container(
-        //       decoration: BoxDecoration(
-        //           color: Colors.purple,
-        //           border: Border.all(
-        //               color: Colors.red, style: BorderStyle.solid, width: 1)),
-        //       child: Column(
-        //         children: [
-        //           StoryBubble(
-        //             story: widget.stories[index],
-        //             bubbleRadius: bubbleRadius,
-        //             readYet: true,
-        //             key: ObjectKey(widget.stories[index]),
-        //           ),
-        //           Container(
-        //               width: bubbleRadius,
-        //               decoration: BoxDecoration(
-        //                   color: Color(0xFFFFFF),
-        //                   border: Border.all(
-        //                       color: Colors.red,
-        //                       style: BorderStyle.solid,
-        //                       width: 1)),
-        //               child: Text(
-        //                 widget.stories[index].name,
-        //                 overflow: TextOverflow.fade,
-        //                 textAlign: TextAlign.center,
-        //                 style: TextStyle(
-        //                   color: readYet(widget.stories[index])
-        //                       ? Colors.grey
-        //                       : Colors.black,
-        //                   fontSize: 11,
-        //                 ),
-        //               )),
-        //         ],
-        //       ),
-        //     );
-        //   },
-        //   separatorBuilder: (BuildContext context, int index) {
-        //     return Divider(
-        //       indent: padding,
-        //     );
-        //   },
-        // ),
-        );
+        ));
   }
 }
