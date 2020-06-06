@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'constants.dart' as Constants;
 import 'story/story_headline.dart';
 import 'story/story_model.dart';
 
@@ -13,10 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Instagram'),
     );
   }
 }
@@ -115,9 +116,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              // Here we take the value from the MyHomePage object that was created by
-              // the App.build method, and use it to set our appbar title.
-              title: Text(widget.title),
+              title: Text(widget.title,
+                  style: GoogleFonts.grandHotel(
+                      color: Constants.COLOR_FONT, fontSize: 30)),
+              leading: IconButton(
+                  onPressed: () => {},
+                  icon: Icon(Icons.photo_camera, color: Constants.COLOR_FONT)),
+              actions: [
+                IconButton(
+                    onPressed: () => {},
+                    icon: Icon(Icons.chat, color: Constants.COLOR_FONT)),
+              ],
+              backgroundColor: Constants.COLOR_BACKGROUND,
             ),
             body: Column(children: [
               StoryHeadline(key: storyHeadlineKey, stories: stories),

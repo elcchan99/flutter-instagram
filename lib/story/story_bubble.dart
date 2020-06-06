@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insta_app/constants.dart' as Constants;
 import 'story_model.dart';
 
 class StoryBubble extends StatefulWidget {
@@ -35,7 +36,7 @@ class StoryBubbleState extends State<StoryBubble> {
   }
 
   Color borderColor() {
-    return _readYet ? Colors.purple : Colors.white;
+    return _readYet ? Colors.purple : Constants.COLOR_BACKGROUND;
   }
 
   @override
@@ -58,7 +59,9 @@ class StoryBubbleState extends State<StoryBubble> {
             width: widget.radius * 2,
             decoration: BoxDecoration(
                 border: Border.all(
-                    width: 2, color: Colors.white, style: BorderStyle.solid),
+                    width: 2,
+                    color: Constants.COLOR_BACKGROUND,
+                    style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(widget.radius))),
             child: Container(
                 height: widget.radius * 2,
@@ -70,7 +73,7 @@ class StoryBubbleState extends State<StoryBubble> {
                         BorderRadius.all(Radius.circular(widget.radius))),
                 child: CircleAvatar(
                   radius: widget.radius - 4,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Constants.COLOR_BACKGROUND,
                   child: ClipOval(
                       child: Image.network(
                     widget.story.avator,
