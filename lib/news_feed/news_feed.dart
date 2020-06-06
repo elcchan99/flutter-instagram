@@ -2,15 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_app/constants.dart' as Constants;
+import 'package:insta_app/news_feed/news_feed_model.dart';
 import 'package:insta_app/story/story_bubble.dart';
 import 'package:insta_app/story/story_model.dart';
 
-class NewsFeed extends StatelessWidget {
-  final story = StoryModel(
-      avator:
-          "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/e35/c0.57.809.809a/s150x150/101649604_276625753387571_5399962706760114154_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=111&_nc_ohc=6E8nhvtiHC4AX9_Gg_b&oh=5a2212c5e0f42b7aff38e23ec09dfbfa&oe=5F048834",
-      name: "temporary",
-      readYet: true);
+class NewsFeed extends StatefulWidget {
+  final NewsFeedModel newsFeed;
+
+  NewsFeed(Key key, {this.newsFeed}) : super(key: key);
+
+  @override
+  _NewsFeedState createState() => _NewsFeedState();
+}
+
+class _NewsFeedState extends State<NewsFeed> {
+  StoryModel _story;
+
+  @override
+  void initState() {
+    super.initState();
+    _story = widget.newsFeed.author;
+  }
+
+  List<Widget> renderComments(List<CommentModel> comments) {
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < comments.length; i++) {
+      list.add(Row(children: [
+        Text(
+          comments[i].author,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          "  ${comments[i].content}",
+          overflow: TextOverflow.ellipsis,
+        ),
+      ]));
+    }
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,12 +59,12 @@ class NewsFeed extends StatelessWidget {
                       padding: const EdgeInsets.all(6.0),
                       child: StoryBubble(
                         key: UniqueKey(),
-                        story: story,
+                        story: _story,
                         radius: 20,
-                        readYet: story.readYet,
+                        readYet: _story.readYet,
                       ),
                     ),
-                    Text(story.name,
+                    Text(_story.name,
                         textAlign: TextAlign.left,
                         style: GoogleFonts.pathwayGothicOne(
                             fontSize: 16, fontWeight: FontWeight.bold)),
@@ -51,7 +81,7 @@ class NewsFeed extends StatelessWidget {
         ),
         // media gallery
         Image.network(
-          "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c0.135.1080.1080a/s640x640/101941578_252548725839144_765387880851239390_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=100&_nc_ohc=aYGpQFtQ8XkAX8k4Uft&oh=73b9bf02d96f8e1061026ad07b08f0fa&oe=5F05FD0D",
+          widget.newsFeed.galleryMedias[0],
           fit: BoxFit.cover,
         ),
         // button bar
@@ -86,7 +116,50 @@ class NewsFeed extends StatelessWidget {
           ],
         )),
         // comment section
-        Container(),
+        Container(
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "${widget.newsFeed.likesCount} likes",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.right,
+                    )),
+                Row(
+                  children: [
+                    Text(
+                      "${widget.newsFeed.author.name}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.start,
+                    ),
+                    Expanded(
+                      child: Text(
+                        " ${widget.newsFeed.description}",
+                        style: TextStyle(),
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+                Divider(
+                  height: 4,
+                  color: Colors.transparent,
+                ),
+                Row(children: [
+                  Text(
+                    "View all ${widget.newsFeed.comments.length} comments",
+                    style: TextStyle(color: Colors.grey),
+                    textAlign: TextAlign.start,
+                  ),
+                ]),
+                Column(children: renderComments(widget.newsFeed.comments))
+              ],
+            )),
       ],
     ));
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:insta_app/news_feed/news_feed_model.dart';
 import 'constants.dart' as Constants;
 import 'story/story_headline.dart';
 import 'story/story_model.dart';
@@ -95,6 +96,52 @@ class _MyHomePageState extends State<MyHomePage> {
             "https://emojis.slackmojis.com/emojis/images/1463601563/418/crying.png"),
   ];
 
+  final List<NewsFeedModel> newsFeeds = [
+    NewsFeedModel(
+        author: StoryModel(
+            avator:
+                "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/e35/c0.57.809.809a/s150x150/101649604_276625753387571_5399962706760114154_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=111&_nc_ohc=6E8nhvtiHC4AX9_Gg_b&oh=5a2212c5e0f42b7aff38e23ec09dfbfa&oe=5F048834",
+            readYet: false,
+            name: "scenary"),
+        galleryMedias: [
+          "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c0.135.1080.1080a/s640x640/101941578_252548725839144_765387880851239390_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=100&_nc_ohc=aYGpQFtQ8XkAX8k4Uft&oh=73b9bf02d96f8e1061026ad07b08f0fa&oe=5F05FD0D"
+        ],
+        description: "The peaceful Charles Island. Have you been to there yet?",
+        likesCount: 999,
+        comments: [
+          CommentModel(
+            author: "Vanvi",
+            content: "That is such a beautiful place!!!!",
+          ),
+          CommentModel(
+            author: "mindful_bitch",
+            content: "Omg, a dream",
+          )
+        ]),
+    NewsFeedModel(
+        author: StoryModel(
+            avator:
+                "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/e15/c180.0.720.720a/s640x640/102286861_563206224388783_4364844070104976646_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=JrwsjRpCWJ4AX-nvMP5&oh=225c5a44af795acff6166aff32105ae4&oe=5F058A12",
+            readYet: false,
+            name: "birdy"),
+        galleryMedias: [
+          "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/78926103_180268653386306_4296702942872544537_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=S_xAB94Mgu8AX_Qnosn&oh=f1dca25ce9f23bc6fb37481223709211&oe=5F02F615"
+        ],
+        description:
+            "Do you know what specy is this? Comment down below if you know !",
+        likesCount: 456,
+        comments: [
+          CommentModel(
+            author: "karle",
+            content: "Cuttie birdie! hehe",
+          ),
+          CommentModel(
+            author: "bird_hunter_007",
+            content: "I will hunt down every bird alive ! A_A",
+          )
+        ])
+  ];
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -130,8 +177,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: Container(
                     child: ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (content, index) => NewsFeed())),
+                        itemCount: newsFeeds.length,
+                        itemBuilder: (content, index) => NewsFeed(
+                              UniqueKey(),
+                              newsFeed: newsFeeds[index],
+                            ))),
               )
             ])));
   }
