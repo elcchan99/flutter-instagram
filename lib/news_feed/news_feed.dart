@@ -32,10 +32,11 @@ class _NewsFeedState extends State<NewsFeed> {
           comments[i].author,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
+        Expanded(
+            child: Text(
           "  ${comments[i].content}",
           overflow: TextOverflow.ellipsis,
-        ),
+        )),
       ]));
     }
     return list;
