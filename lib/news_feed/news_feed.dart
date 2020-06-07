@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_app/constants.dart' as Constants;
+import 'package:insta_app/news_feed/news_feed_icon_bar.dart';
 import 'package:insta_app/news_feed/news_feed_model.dart';
 import 'package:insta_app/story/story_bubble.dart';
 import 'package:insta_app/story/story_model.dart';
@@ -86,36 +87,7 @@ class _NewsFeedState extends State<NewsFeed> {
           fit: BoxFit.cover,
         ),
         // button bar
-        Container(
-            child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.heart),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: FaIcon(
-                  FontAwesomeIcons.comment,
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: FaIcon(
-                  FontAwesomeIcons.inbox,
-                ),
-                onPressed: () {},
-              )
-            ])),
-            IconButton(
-              icon: FaIcon(FontAwesomeIcons.bookmark),
-              onPressed: () {},
-            )
-          ],
-        )),
+        NewsFeedIconBar(),
         // comment section
         Container(
             padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
