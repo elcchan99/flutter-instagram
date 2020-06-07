@@ -139,6 +139,31 @@ class _MyHomePageState extends State<MyHomePage> {
             author: "bird_hunter_007",
             content: "I will hunt down every bird alive ! A_A",
           )
+        ]),
+    NewsFeedModel(
+        author: StoryModel(
+            avator:
+                "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/e15/c180.0.720.720a/s640x640/102286861_563206224388783_4364844070104976646_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=JrwsjRpCWJ4AX-nvMP5&oh=225c5a44af795acff6166aff32105ae4&oe=5F058A12",
+            readYet: false,
+            name: "birdy"),
+        galleryMedias: [
+          "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/102390523_1163335870725932_3778922180641359171_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=108&_nc_ohc=x7pmqVL-yYsAX_6KY82&oh=9684c5495665cfb869ca6a6e64689cd2&oe=5F06B2C7"
+        ],
+        description: "Owl is awesome 🦉",
+        likesCount: 890,
+        comments: [
+          CommentModel(
+            author: "v.tws",
+            content: "I wanna pet one 😆",
+          ),
+          CommentModel(
+            author: "bird_hunter_007",
+            content: "I will hunt down every bird alive ! A_A",
+          ),
+          CommentModel(
+            author: "nature_is_great",
+            content: "@bird_hunter_007 How rule are you 😡😡😡",
+          )
         ])
   ];
 
