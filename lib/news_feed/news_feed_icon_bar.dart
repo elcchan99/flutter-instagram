@@ -17,7 +17,6 @@ class _NewsFeedIconBarState extends State<NewsFeedIconBar> {
     IconButtomType.values.forEach((type) {
       this.buttomActive[type] = false;
     });
-    print(this.buttomActive);
     super.initState();
   }
 
