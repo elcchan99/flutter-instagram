@@ -142,6 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ])
   ];
 
+  int _selectedPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _onTapNav(int index) {
+    setState(() {
+      this._selectedPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -152,37 +165,62 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title,
-                  style: GoogleFonts.grandHotel(
-                      color: Constants.COLOR_FONT, fontSize: 30)),
-              leading: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.photo_camera, color: Constants.COLOR_FONT)),
-              actions: [
-                IconButton(
-                    onPressed: () {},
-                    icon: FaIcon(FontAwesomeIcons.inbox,
-                        color: Constants.COLOR_FONT)),
-              ],
-              backgroundColor: Constants.COLOR_BACKGROUND,
-            ),
-            body: Column(children: [
-              StoryHeadline(key: storyHeadlineKey, stories: stories),
-              Divider(
-                height: 1,
-                color: Colors.grey,
-                thickness: 1,
+      appBar: AppBar(
+        title: Text(widget.title,
+            style: GoogleFonts.grandHotel(
+                color: Constants.COLOR_FONT, fontSize: 30)),
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.photo_camera, color: Constants.COLOR_FONT)),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon:
+                  FaIcon(FontAwesomeIcons.inbox, color: Constants.COLOR_FONT)),
+        ],
+        backgroundColor: Constants.COLOR_BACKGROUND,
+      ),
+      body: Column(children: [
+        StoryHeadline(key: storyHeadlineKey, stories: stories),
+        Divider(
+          height: 1,
+          color: Colors.grey,
+          thickness: 1,
+        ),
+        Expanded(
+          child: Container(
+              child: ListView.builder(
+                  itemCount: newsFeeds.length,
+                  itemBuilder: (content, index) => NewsFeed(
+                        UniqueKey(),
+                        newsFeed: newsFeeds[index],
+                      ))),
+        )
+      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedPageIndex,
+        onTap: _onTapNav,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Constants.COLOR_FONT,
               ),
-              Expanded(
-                child: Container(
-                    child: ListView.builder(
-                        itemCount: newsFeeds.length,
-                        itemBuilder: (content, index) => NewsFeed(
-                              UniqueKey(),
-                              newsFeed: newsFeeds[index],
-                            ))),
-              )
-            ])));
+              title: Text("")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search, color: Constants.COLOR_FONT),
+              title: Text("")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_box, color: Constants.COLOR_FONT),
+              title: Text("")),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.heart, color: Constants.COLOR_FONT),
+              title: Text("")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle, color: Constants.COLOR_FONT),
+              title: Text(""))
+        ],
+      ),
+    ));
   }
 }
