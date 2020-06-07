@@ -166,9 +166,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.title,
-            style: GoogleFonts.grandHotel(
-                color: Constants.COLOR_FONT, fontSize: 30)),
+        title: Center(
+            child: Text(widget.title,
+                style: GoogleFonts.grandHotel(
+                    color: Constants.COLOR_FONT, fontSize: 30))),
         leading: IconButton(
             onPressed: () {},
             icon: Icon(Icons.photo_camera, color: Constants.COLOR_FONT)),
