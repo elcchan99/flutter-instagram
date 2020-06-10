@@ -18,8 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clone Instagram',
       theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: TextTheme(
+              headline2: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              bodyText1: TextStyle(
+                  color: Constants.COLOR_FONT, fontWeight: FontWeight.bold),
+              bodyText2: TextStyle(color: Constants.COLOR_FONT))),
       home: MyHomePage(title: 'Instagram'),
     );
   }
@@ -238,6 +242,8 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (_selectedPageIndex) {
       case 0:
         return newsFeedPage();
+      case 3:
+        return activityPage();
       default:
         return Container();
     }
@@ -261,5 +267,187 @@ class _MyHomePageState extends State<MyHomePage> {
                     ))),
       )
     ]);
+  }
+
+  List<Widget> buildActivityRows() {
+    return [
+      ListTile(
+          leading: Padding(
+            padding: EdgeInsets.all(5),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/103006547_166563501518199_2263640992290458281_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=103&_nc_ohc=rKTD-ilhwR8AX9QL6eU&oh=e0c2460d01738fa59282b6af1d43f32e&oe=5F099134"),
+            ),
+          ),
+          title: RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                  text: 'horse ',
+                  style: TextStyle(
+                      color: Constants.COLOR_FONT,
+                      fontWeight: FontWeight.bold)),
+              TextSpan(
+                  text: 'mentioned you in a comment:',
+                  style: TextStyle(color: Constants.COLOR_FONT)),
+              TextSpan(text: "@you ", style: TextStyle(color: Colors.blue)),
+              TextSpan(
+                  text: "feed me now, i'm hungry",
+                  style: TextStyle(color: Constants.COLOR_FONT)),
+              TextSpan(text: " 3w", style: TextStyle(color: Colors.grey)),
+            ]),
+          ),
+          trailing: Container(
+            height: 50,
+            width: 50,
+            child: Image.network(
+                "https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c175.0.729.729a/s640x640/103019705_263357264749078_4494548748163703287_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=G3MuKhk7mqwAX8-6JPu&oh=4b74b5688c00e0ba128f7c00a5a5f149&oe=5F095B35"),
+          ))
+    ];
+  }
+
+  List<Widget> buildSuggestionRows() {
+    return [
+      ["abc", "Cloff CHAN"],
+      ["cde", "Edward FUNG"],
+      ["sseqr", "Sun KAY"],
+      ["aghwkejns", "Kate Lee"],
+    ].map((suggestionModel) {
+      return Padding(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Container(
+                padding: EdgeInsets.all(2),
+                height: 55,
+                width: 55,
+                child: CircleAvatar(backgroundColor: Colors.red)),
+            Expanded(
+                child: Container(
+              padding: EdgeInsets.all(5),
+              child: Column(
+                children: [
+                  Container(
+                    child: Text(
+                      suggestionModel[0],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    alignment: Alignment.centerLeft,
+                  ),
+                  Container(
+                    child: Text(suggestionModel[1],
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold)),
+                    alignment: Alignment.centerLeft,
+                  ),
+                  Container(
+                    child: Text("Follows you",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold)),
+                    alignment: Alignment.centerLeft,
+                  )
+                ],
+              ),
+            )),
+            FlatButton(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              // padding: EdgeInsets.all(0),
+              child: Text("Follow", style: TextStyle(color: Colors.white)),
+              onPressed: () {},
+              color: Colors.lightBlue,
+            ),
+            SizedBox(
+                height: 20,
+                width: 20,
+                child: Center(
+                    child: FlatButton(
+                  child: Text("x"),
+                  onPressed: () {},
+                )))
+          ]));
+    }).toList();
+  }
+
+  Widget activityPage() {
+    return ListView(
+      children: [
+        ListTile(
+            leading: Stack(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://scontent-hkt1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/101001329_567158304223314_2167333342683462705_n.jpg?_nc_ht=scontent-hkt1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=kboWjlGbsXEAX_VJGsL&oh=98cf3f692de23a158fbaa71e8bbeabe6&oe=5F0B4AE3'),
+                ),
+              ],
+            ),
+            title: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                children: [
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Follow Requests",
+                          style: TextStyle(fontSize: 14))),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Approve or ignore requests",
+                          style: TextStyle(color: Colors.grey, fontSize: 14))),
+                ],
+              ),
+            )),
+        Padding(
+            padding: EdgeInsets.all(
+              15,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "This Month",
+                style: Theme.of(context).textTheme.headline2,
+                textAlign: TextAlign.start,
+              ),
+            )),
+        Container(
+            child: Column(
+                children: buildActivityRows() +
+                    buildActivityRows() +
+                    buildActivityRows())),
+        Padding(
+            padding: EdgeInsets.all(
+              15,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Earlier",
+                style: Theme.of(context).textTheme.headline2,
+                textAlign: TextAlign.start,
+              ),
+            )),
+        Container(
+            child: Column(
+                children: buildActivityRows() +
+                    buildActivityRows() +
+                    buildActivityRows())),
+        Padding(
+            padding: EdgeInsets.all(
+              15,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Suggestions for you",
+                style: Theme.of(context).textTheme.headline2,
+                textAlign: TextAlign.start,
+              ),
+            )),
+        Container(
+          child: Column(children: buildSuggestionRows()),
+        ),
+      ],
+    );
   }
 }
