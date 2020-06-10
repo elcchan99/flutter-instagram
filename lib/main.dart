@@ -206,23 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         backgroundColor: Constants.COLOR_BACKGROUND,
       ),
-      body: Column(children: [
-        StoryHeadline(key: storyHeadlineKey, stories: stories),
-        Divider(
-          height: 1,
-          color: Colors.grey,
-          thickness: 1,
-        ),
-        Expanded(
-          child: Container(
-              child: ListView.builder(
-                  itemCount: newsFeeds.length,
-                  itemBuilder: (content, index) => NewsFeed(
-                        UniqueKey(),
-                        newsFeed: newsFeeds[index],
-                      ))),
-        )
-      ]),
+      body: renderPage(_selectedPageIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
         onTap: _onTapNav,
@@ -248,5 +232,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     ));
+  }
+
+  Widget renderPage(pageIndex) {
+    switch (_selectedPageIndex) {
+      case 0:
+      return newsFeedPage();
+      default:
+      return Container();
+    }
+  }
+
+  Widget newsFeedPage() {
+    return Column(children: [
+        StoryHeadline(key: storyHeadlineKey, stories: stories),
+        Divider(
+          height: 1,
+          color: Colors.grey,
+          thickness: 1,
+        ),
+        Expanded(
+          child: Container(
+              child: ListView.builder(
+                  itemCount: newsFeeds.length,
+                  itemBuilder: (content, index) => NewsFeed(
+                        UniqueKey(),
+                        newsFeed: newsFeeds[index],
+                      ))),
+        )
+      ]);
   }
 }
